@@ -1,19 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.tbee.javafx.scene.layout.MigPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Button?>
-<MigPane id="MakerPane" fx:controller="com.teamrocket.pokemon.PokemonController"
-         styleClass="main-panel"
-         layout="insets 20"
-         cols="[label, pref!][grow, 50::]"
-         rows=""
-         xmlns:fx="http://javafx.com/fxml">
+<?import javafx.scene.control.*?>
+<?import javafx.collections.*?>
+<?import java.lang.*?>
 
-<Label text="First Name:" /> <TextField fx:id="firstNameField" prefColumnCount="30" MigPane.cc="growx, wrap" />
-<Label text="Last Name:" />	<TextField fx:id="lastNameField" prefColumnCount="30" MigPane.cc="growx, wrap" />
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
 
-<Button text="Say Hello" onAction="#sayHello" MigPane.cc="skip, gap :push, gaptop 15, wrap" />
+<?import javafx.scene.image.ImageView?>
+<?import com.teamrocket.pokemon.controls.NumberTextField?>
 
-</MigPane >
+<GridPane fx:controller="com.teamrocket.pokemon.PokemonController"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+    <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+
+    <ImageView GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2"
+               GridPane.halignment="CENTER"
+               fx:id="spriteImg"
+               fitWidth="100"
+               fitHeight="100"/>
+
+    <Label text="Nickname:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <TextField fx:id="nicknameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+    <Label text="Species:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <ComboBox fx:id="speciesCmb" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#onSelectSpecies"/>
+
+    <Label text="Current Hp:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <NumberTextField fx:id="currentHpField"  GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+    <Label text="Type1:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+    <ComboBox fx:id="type1Cmb" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+    <Label text="Type2:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+    <ComboBox fx:id="type2Cmb" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+    <Label text="Status Condition:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+    <ComboBox fx:id="statusAilmentCmb" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+
+    <Label text="Item Held:" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+    <ComboBox fx:id="itemHeldCmb" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+
+    <Label text="Move1:" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+    <ComboBox fx:id="move1Cmb" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+
+    <Label text="Move2:" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
+    <ComboBox fx:id="move2Cmb" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
+
+    <Label text="Move3:" GridPane.columnIndex="0" GridPane.rowIndex="10"/>
+    <ComboBox fx:id="move3Cmb" GridPane.columnIndex="1" GridPane.rowIndex="10"/>
+
+    <Label text="Move4:" GridPane.columnIndex="0" GridPane.rowIndex="11"/>
+    <ComboBox fx:id="move4Cmb" GridPane.columnIndex="1" GridPane.rowIndex="11"/>
+
+    <Label text="Level:" GridPane.columnIndex="0" GridPane.rowIndex="12"/>
+    <NumberTextField fx:id="levelPcField"  GridPane.columnIndex="1" GridPane.rowIndex="12" />
+
+    <Button text="Create Pokemon" onAction="#createPokemon" GridPane.columnIndex="1" GridPane.rowIndex="15"/>
+
+</GridPane>
+
+
+
+
+
+
+
