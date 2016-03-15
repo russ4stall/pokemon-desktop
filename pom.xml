@@ -6,7 +6,7 @@
   <artifactId>pokemon-parent</artifactId>
   <version>1.0-SNAPSHOT</version>
   <modules>
-    <module>pokemon-data</module>
+    <module>pokemon-maker</module>
     <module>pokemon-desktop</module>
   </modules>
   <packaging>pom</packaging>
