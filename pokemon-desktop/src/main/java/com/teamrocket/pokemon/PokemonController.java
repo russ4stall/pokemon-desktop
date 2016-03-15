@@ -1,6 +1,7 @@
 package com.teamrocket.pokemon;
 
 import com.google.gson.Gson;
+import com.russ4stall.pokemon.*;
 import com.teamrocket.pokemon.controls.NumberTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,8 +10,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import pokemon.maker.PokemonData;
-import pokemon.maker.fields.*;
+//import pokemon.maker.PokemonData;
+//import com.russ4stall.pokemon.PokemonData;
+//import pokemon.maker.fields.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,7 +30,8 @@ public class PokemonController implements Initializable {
     @FXML private ComboBox<Species> speciesCmb;
     @FXML private NumberTextField currentHpField;
     @FXML private NumberTextField levelPcField;
-    @FXML private ComboBox<StatusAilment> statusAilmentCmb;
+    @FXML private ComboBox<StatusCondition> statusAilmentCmb;
+    //@FXML private ComboBox<StatusAilment> statusAilmentCmb;
     @FXML private ComboBox<Type> type1Cmb;
     @FXML private ComboBox<Type> type2Cmb;
     @FXML private ComboBox<Item> itemHeldCmb;
@@ -43,8 +46,9 @@ public class PokemonController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         speciesCmb.setItems(FXCollections.observableArrayList(Species.values()));
-        speciesCmb.getSelectionModel().select(Species.Mew);
-        statusAilmentCmb.setItems(FXCollections.observableArrayList(StatusAilment.values()));
+        speciesCmb.getSelectionModel().select(Species.MEW);
+        //statusAilmentCmb.setItems(FXCollections.observableArrayList(StatusAilment.values()));
+        statusAilmentCmb.setItems(FXCollections.observableArrayList(StatusCondition.values()));
         type1Cmb.setItems(FXCollections.observableArrayList(Type.values()));
         type2Cmb.setItems(FXCollections.observableArrayList(Type.values()));
         itemHeldCmb.setItems(FXCollections.observableArrayList(Item.values()));
@@ -56,13 +60,7 @@ public class PokemonController implements Initializable {
     }
 
     public void createPokemon() {
-        /*PokemonData pokemon = new PokemonData(
-                speciesCmb.getSelectionModel().getSelectedItem().getName(),
-                currentHpField.getNumber().intValue(),
-
-        );*/
-
-        final PokemonData data = new PokemonData(
+        /*final pokemon.maker.PokemonData data = new pokemon.maker.PokemonData(
                 speciesCmb.getValue(),
                 currentHpField.getNumber().intValue(),
                 levelPcField.getNumber().intValue(),
@@ -93,10 +91,44 @@ public class PokemonController implements Initializable {
                 152,
                 153,
                 nicknameField.getText(),
-                "BOBBO");
+                "BOBBO");*/
+
+        PokemonData data = new PokemonData();
+        data.setSpecies(speciesCmb.getValue());
+        data.setCurrentHp(currentHpField.getNumber().intValue());
+        data.setLevelPc(levelPcField.getNumber().intValue());
+        data.setStatusCondition(statusAilmentCmb.getValue());
+        data.setType1(type1Cmb.getValue()); // THIS IS IGNORED ONCE TRADE COMMENCES
+        data.setType2(type2Cmb.getValue()); // THIS IS IGNORED ONCE TRADE COMMENCES
+        data.setItemHeld(itemHeldCmb.getValue());
+        data.setMove1(move1Cmb.getValue());
+        data.setMove2(move2Cmb.getValue());
+        data.setMove3(move3Cmb.getValue());
+        data.setMove4(move4Cmb.getValue());
+        data.setOriginalTrainerId(1234);
+        data.setExp(200000);
+        data.setHpEv(65535);
+        data.setAttackEv(65535);
+        data.setDefenseEv(65535);
+        data.setSpeedEv(65535);
+        data.setSpecialEv(65535);
+        data.setIv(65535);
+        data.setMove1pp(63);
+        data.setMove2pp(63);
+        data.setMove3pp(63);
+        data.setMove4pp(63);
+        data.setLevel(74);
+        data.setMaxHp(300);
+        data.setAttack(150);
+        data.setDefense(151);
+        data.setSpeed(152);
+        data.setSpecial(153);
+        data.setNickname(nicknameField.getText());
+        data.setOriginalTrainerName("BOBBO");
 
         System.out.println(speciesCmb.getValue());
         System.out.println(data.getBytes().size());
+        System.out.println(data.getBytes());
         Gson gson = new Gson();
         System.out.println(gson.toJson(data));
         clearFields();
@@ -116,7 +148,7 @@ public class PokemonController implements Initializable {
 
         spriteImg.setImage(new Image("images/sprites/mew.png"));
         nicknameField.clear();
-        speciesCmb.getSelectionModel().select(Species.Mew);
+        speciesCmb.getSelectionModel().select(Species.MEW);
         currentHpField.clear();
     }
 }

@@ -8,6 +8,7 @@
   <modules>
     <module>pokemon-maker</module>
     <module>pokemon-desktop</module>
+    <module>pokemon-data</module>
   </modules>
   <packaging>pom</packaging>
 

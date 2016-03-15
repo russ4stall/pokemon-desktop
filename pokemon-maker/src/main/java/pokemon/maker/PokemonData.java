@@ -12,6 +12,8 @@ import pokemon.maker.fields.Species;
 import pokemon.maker.fields.StatusAilment;
 import pokemon.maker.fields.Type;
 
+import static pokemon.maker.PokemonGeneratorApp.pp;
+
 
 public class PokemonData {
     public static String[] hex(final String... values) {
@@ -164,6 +166,11 @@ public class PokemonData {
         bytes.addAll(Arrays.asList(special.getHex()));
 
         return Collections.unmodifiableList(bytes);
+    }
+
+    public PokemonData bytesToPokemon(String[] bytes) {
+        return null;
+        //return new PokemonData();
     }
 
     public Species getSpecies() {
