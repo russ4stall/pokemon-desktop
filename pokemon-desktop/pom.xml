@@ -3,10 +3,14 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.russ4stall.teamrocket</groupId>
+    <parent>
+        <groupId>com.russ4stall.teamrocket</groupId>
+        <artifactId>pokemon-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
     <artifactId>pokemon-desktop</artifactId>
     <name>pokemon-desktop</name>
-
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
     
