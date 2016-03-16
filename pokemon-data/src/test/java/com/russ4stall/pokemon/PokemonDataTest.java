@@ -2,6 +2,7 @@ package com.russ4stall.pokemon;
 
 import org.junit.Test;
 
+import javax.xml.bind.DatatypeConverter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,19 +46,19 @@ public class PokemonDataTest {
         pokemon.setDefense(151);
         pokemon.setSpeed(152);
         pokemon.setSpecial(153);
-        pokemon.setNickname("Alchemy");
-        pokemon.setOriginalTrainerName("BOBBO");
 
-        //int[] data = new int[] {0x15, 0x0, 0x64, 0x64, 0x00, 0x00, 0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x4, 0xd2, 0x3, 0xd, 0x40, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x3f, 0x3f, 0x3f, 0x3f, 0x4a, 0x1, 0x2c, 0x0, 0x96, 0x0, 0x97, 0x0, 0x98, 0x0, 0x99};
         List<String> dataBytes = pokemon.getBytes();
 
-        dataBytes.stream().forEach(System.out::println);
         String[] arr = new String[dataBytes.size()];
         arr = dataBytes.toArray(arr);
 
         PokemonData pokemon2 = PokemonData.bytesToPokemon(arr);
 
-        assertEquals(pokemon, pokemon2);
+        //assertEquals(pokemon, pokemon2);
+        assertEquals(pokemon.getBytes(), pokemon2.getBytes());
+
+        System.out.println(pokemon);
+        System.out.println(pokemon2);
     }
 
     @Test
@@ -72,5 +73,43 @@ public class PokemonDataTest {
         assertEquals(Move.valueOfHex("0x89"), Move.GLARE);
         assertEquals(Type.valueOfHex("0x02"), Type.FLYING);
         assertEquals(Item.valueOfHex("0x06"), Item.BICYCLE);
+    }
+
+    @Test
+    public void byteTests() {
+        int in = 500;
+        byte[] data = new byte[2]; // <- assuming "in" value in 0..65535 range and we can use 2 bytes only
+
+        data[0] = (byte)(in & 0xFF);
+        data[1] = (byte)((in >> 8) & 0xFF);
+
+        int value = 65535;
+        int bytes = 2;
+
+        final String lowByte = "0x" + Integer.toString(value & 0xFF, 16);
+        final String highByte = "0x" + Integer.toString((value >> 8) & 0xFF, 16);
+        final String higherByte = "0x" + Integer.toString((value >> 16) & 0xFF, 16);
+
+        String[] ss;
+
+        if(bytes == 3) {
+            ss = new String[] {higherByte, highByte, lowByte};
+        } else if(bytes == 2) {
+            ss = new String[] {highByte, lowByte};
+        } else {
+            ss = new String[] {lowByte};
+        }
+
+        //int b3 = Integer.parseInt(ss[2].substring(2), 16);
+        int b2 = Integer.parseInt(ss[1].substring(2), 16);
+        int b1 = Integer.parseInt(ss[0].substring(2), 16);
+
+        System.out.println(b1);
+        System.out.println(b2);
+
+        //int r = ((b1 & 0xF) << 16) | ((b2 & 0xFF) << 8) | (b3 & 0xFF);
+        int r = ((b1 & 0xFF) << 8) | (b2 & 0xFF);
+
+        System.out.println(r);
     }
 }

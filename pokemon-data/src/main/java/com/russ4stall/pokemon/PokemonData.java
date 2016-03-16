@@ -55,8 +55,7 @@ public class PokemonData {
     }
 
     public List<String> getBytes() {
-        final List<String> bytes = new ArrayList<>();
-
+        final List<String> bytes = new ArrayList<String>();
         bytes.addAll(Arrays.asList(species.getHex()));
         bytes.addAll(Arrays.asList(currentHp.getHex()));
         bytes.addAll(Arrays.asList(levelPc.getHex()));
@@ -86,7 +85,6 @@ public class PokemonData {
         bytes.addAll(Arrays.asList(defense.getHex()));
         bytes.addAll(Arrays.asList(speed.getHex()));
         bytes.addAll(Arrays.asList(special.getHex()));
-
         return Collections.unmodifiableList(bytes);
     }
 
@@ -125,15 +123,18 @@ public class PokemonData {
     }
 
     private static int hexToInt(String... args) {
-        StringBuilder s = new StringBuilder();
-        for (int i = 0; i < args.length; i++) {
-            if (args[i].startsWith("0x")) {
-                s.append(args[i].substring(2));
-            } else {
-                s.append(args[i]);
-            }
+        if (args.length == 1) {
+            return Integer.parseInt(args[0].substring(2), 16);
+        } else if (args.length == 2) {
+            int b2 = Integer.parseInt(args[1].substring(2), 16);
+            int b1 = Integer.parseInt(args[0].substring(2), 16);
+            return ((b1 & 0xFF) << 8) | (b2 & 0xFF);
+        } else {
+            int b3 = Integer.parseInt(args[2].substring(2), 16);
+            int b2 = Integer.parseInt(args[1].substring(2), 16);
+            int b1 = Integer.parseInt(args[0].substring(2), 16);
+            return ((b1 & 0xF) << 16) | ((b2 & 0xFF) << 8) | (b3 & 0xFF);
         }
-        return Integer.parseInt(s.toString(), 16);
     }
 
     public void setNickname(String nickname) {
@@ -150,6 +151,42 @@ public class PokemonData {
         this.originalTrainerName = originalTrainerName;
     }
 
+    @Override
+    public String toString() {
+        return "PokemonData{" +
+                "species=" + species +
+                ", currentHp=" + currentHp +
+                ", levelPc=" + levelPc +
+                ", statusCondition=" + statusCondition +
+                ", type1=" + type1 +
+                ", type2=" + type2 +
+                ", itemHeld=" + itemHeld +
+                ", move1=" + move1 +
+                ", move2=" + move2 +
+                ", move3=" + move3 +
+                ", move4=" + move4 +
+                ", originalTrainerId=" + originalTrainerId +
+                ", exp=" + exp +
+                ", hpEv=" + hpEv +
+                ", attackEv=" + attackEv +
+                ", defenseEv=" + defenseEv +
+                ", speedEv=" + speedEv +
+                ", specialEv=" + specialEv +
+                ", iv=" + iv +
+                ", move1pp=" + move1pp +
+                ", move2pp=" + move2pp +
+                ", move3pp=" + move3pp +
+                ", move4pp=" + move4pp +
+                ", level=" + level +
+                ", maxHp=" + maxHp +
+                ", attack=" + attack +
+                ", defense=" + defense +
+                ", speed=" + speed +
+                ", special=" + special +
+                ", nickname='" + nickname + '\'' +
+                ", originalTrainerName='" + originalTrainerName + '\'' +
+                '}';
+    }
 
     public void setSpecies(Species species) {
         this.species = species;

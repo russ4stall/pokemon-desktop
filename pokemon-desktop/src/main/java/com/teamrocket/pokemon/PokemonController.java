@@ -10,15 +10,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-//import pokemon.maker.PokemonData;
-//import com.russ4stall.pokemon.PokemonData;
-//import pokemon.maker.fields.*;
+
+import com.russ4stall.pokemon.PokemonData;
+
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static pokemon.maker.PokemonGeneratorApp.pp;
+//import static pokemon.maker.PokemonGeneratorApp.pp;
 
 /**
  * @author Russ Forstall
@@ -30,8 +30,7 @@ public class PokemonController implements Initializable {
     @FXML private ComboBox<Species> speciesCmb;
     @FXML private NumberTextField currentHpField;
     @FXML private NumberTextField levelPcField;
-    @FXML private ComboBox<StatusCondition> statusAilmentCmb;
-    //@FXML private ComboBox<StatusAilment> statusAilmentCmb;
+    @FXML private ComboBox<StatusCondition> statusConditionCmb;
     @FXML private ComboBox<Type> type1Cmb;
     @FXML private ComboBox<Type> type2Cmb;
     @FXML private ComboBox<Item> itemHeldCmb;
@@ -47,8 +46,7 @@ public class PokemonController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         speciesCmb.setItems(FXCollections.observableArrayList(Species.values()));
         speciesCmb.getSelectionModel().select(Species.MEW);
-        //statusAilmentCmb.setItems(FXCollections.observableArrayList(StatusAilment.values()));
-        statusAilmentCmb.setItems(FXCollections.observableArrayList(StatusCondition.values()));
+        statusConditionCmb.setItems(FXCollections.observableArrayList(StatusCondition.values()));
         type1Cmb.setItems(FXCollections.observableArrayList(Type.values()));
         type2Cmb.setItems(FXCollections.observableArrayList(Type.values()));
         itemHeldCmb.setItems(FXCollections.observableArrayList(Item.values()));
@@ -97,7 +95,7 @@ public class PokemonController implements Initializable {
         data.setSpecies(speciesCmb.getValue());
         data.setCurrentHp(currentHpField.getNumber().intValue());
         data.setLevelPc(levelPcField.getNumber().intValue());
-        data.setStatusCondition(statusAilmentCmb.getValue());
+        data.setStatusCondition(statusConditionCmb.getValue());
         data.setType1(type1Cmb.getValue()); // THIS IS IGNORED ONCE TRADE COMMENCES
         data.setType2(type2Cmb.getValue()); // THIS IS IGNORED ONCE TRADE COMMENCES
         data.setItemHeld(itemHeldCmb.getValue());

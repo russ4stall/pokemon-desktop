@@ -40,7 +40,12 @@ public class IntegerField implements DataField {
 			return new String[] {lowByte};
 		}
 	}
-	
+
+	@Override
+	public String toString() {
+		return String.valueOf(value);
+	}
+
 	public String getName() {
 		return Integer.toString(value);
 	}

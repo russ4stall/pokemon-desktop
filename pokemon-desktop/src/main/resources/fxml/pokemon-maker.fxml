@@ -36,7 +36,7 @@
     <ComboBox fx:id="type2Cmb" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
 
     <Label text="Status Condition:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
-    <ComboBox fx:id="statusAilmentCmb" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+    <ComboBox fx:id="statusConditionCmb" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
 
     <Label text="Item Held:" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
     <ComboBox fx:id="itemHeldCmb" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
