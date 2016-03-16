@@ -2,6 +2,7 @@ package com.teamrocket.pokemon;
 
 import com.google.gson.Gson;
 import com.russ4stall.pokemon.*;
+import com.teamrocket.pokemon.controls.NumberSpinner;
 import com.teamrocket.pokemon.controls.NumberTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,7 +29,7 @@ public class PokemonController implements Initializable {
     @FXML private ImageView spriteImg;
     @FXML private TextField nicknameField;
     @FXML private ComboBox<Species> speciesCmb;
-    @FXML private NumberTextField currentHpField;
+    @FXML private NumberSpinner currentHpField;
     @FXML private NumberTextField levelPcField;
     @FXML private ComboBox<StatusCondition> statusConditionCmb;
     @FXML private ComboBox<Type> type1Cmb;
@@ -40,56 +41,30 @@ public class PokemonController implements Initializable {
     @FXML private ComboBox<Move> move4Cmb;
 
 
-
     // Populate all the dropdowns
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         speciesCmb.setItems(FXCollections.observableArrayList(Species.values()));
         speciesCmb.getSelectionModel().select(Species.MEW);
         statusConditionCmb.setItems(FXCollections.observableArrayList(StatusCondition.values()));
+        statusConditionCmb.getSelectionModel().select(StatusCondition.NONE);
         type1Cmb.setItems(FXCollections.observableArrayList(Type.values()));
+        type1Cmb.getSelectionModel().select(Type.NORMAL);
         type2Cmb.setItems(FXCollections.observableArrayList(Type.values()));
+        type2Cmb.getSelectionModel().select(Type.NORMAL);
         itemHeldCmb.setItems(FXCollections.observableArrayList(Item.values()));
+        itemHeldCmb.getSelectionModel().select(Item.NO_ITEM);
         move1Cmb.setItems(FXCollections.observableArrayList(Move.values()));
+        move1Cmb.getSelectionModel().select(Move.NOTHING);
         move2Cmb.setItems(FXCollections.observableArrayList(Move.values()));
+        move2Cmb.getSelectionModel().select(Move.NOTHING);
         move3Cmb.setItems(FXCollections.observableArrayList(Move.values()));
+        move3Cmb.getSelectionModel().select(Move.NOTHING);
         move4Cmb.setItems(FXCollections.observableArrayList(Move.values()));
-
+        move4Cmb.getSelectionModel().select(Move.NOTHING);
     }
 
     public void createPokemon() {
-        /*final pokemon.maker.PokemonData data = new pokemon.maker.PokemonData(
-                speciesCmb.getValue(),
-                currentHpField.getNumber().intValue(),
-                levelPcField.getNumber().intValue(),
-                statusAilmentCmb.getValue(),
-                type2Cmb.getValue(), // THIS IS IGNORED ONCE TRADE COMMENCES
-                type1Cmb.getValue(), // THIS IS IGNORED ONCE TRADE COMMENCES
-                itemHeldCmb.getValue(),
-                move1Cmb.getValue(),
-                move2Cmb.getValue(),
-                move3Cmb.getValue(),
-                move4Cmb.getValue(),
-                1234,
-                200000,
-                65535,
-                65535,
-                65535,
-                65535,
-                65535,
-                65535,
-                pp(3, 0),
-                pp(3, 0),
-                pp(3, 0),
-                pp(3, 0),
-                74,
-                300,
-                150,
-                151,
-                152,
-                153,
-                nicknameField.getText(),
-                "BOBBO");*/
 
         PokemonData data = new PokemonData();
         data.setSpecies(speciesCmb.getValue());
@@ -129,13 +104,14 @@ public class PokemonController implements Initializable {
         System.out.println(data.getBytes());
         Gson gson = new Gson();
         System.out.println(gson.toJson(data));
-        clearFields();
+        //clearFields();
     }
 
     //Displays sprite of selected pokemon species
     public void onSelectSpecies() throws IOException {
         if (speciesCmb.getSelectionModel().getSelectedItem() != null) {
-            String imgName = speciesCmb.getSelectionModel().getSelectedItem().toString();
+            String imgName = speciesCmb.getSelectionModel().getSelectedItem().name();
+            imgName = imgName.replace("_", "");
             imgName = "images/sprites/" + imgName.toLowerCase() + ".png";
             Image sprite = new Image(imgName);
             spriteImg.setImage(sprite);
@@ -147,6 +123,6 @@ public class PokemonController implements Initializable {
         spriteImg.setImage(new Image("images/sprites/mew.png"));
         nicknameField.clear();
         speciesCmb.getSelectionModel().select(Species.MEW);
-        currentHpField.clear();
+        //currentHpField.clear();
     }
 }

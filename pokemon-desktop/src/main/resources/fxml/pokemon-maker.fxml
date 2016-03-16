@@ -10,6 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import com.teamrocket.pokemon.controls.NumberTextField?>
 
+<?import com.teamrocket.pokemon.controls.NumberSpinner?>
 <GridPane fx:controller="com.teamrocket.pokemon.PokemonController"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
     <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
@@ -24,10 +25,13 @@
     <TextField fx:id="nicknameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
     <Label text="Species:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-    <ComboBox fx:id="speciesCmb" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#onSelectSpecies"/>
+    <ComboBox fx:id="speciesCmb"
+
+              GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#onSelectSpecies"/>
 
     <Label text="Current Hp:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-    <NumberTextField fx:id="currentHpField"  GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <!--<NumberTextField fx:id="currentHpField"  GridPane.columnIndex="1" GridPane.rowIndex="3" />-->
+    <NumberSpinner fx:id="currentHpField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
     <Label text="Type1:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
     <ComboBox fx:id="type1Cmb" GridPane.columnIndex="1" GridPane.rowIndex="4"/>

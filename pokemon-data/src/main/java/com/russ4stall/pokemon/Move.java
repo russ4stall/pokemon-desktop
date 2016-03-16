@@ -179,6 +179,8 @@ public enum Move implements DataField {
         this.name = name;
     }
 
+
+
     public static Move valueOfHex(String hex) throws Exception {
         for (Move s : Move.values()) {
             if (s.hex.equals(hex)) {
@@ -195,6 +197,11 @@ public enum Move implements DataField {
 
     @Override
     public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
         return name;
     }
 }
