@@ -45,6 +45,14 @@ public class PokemonData {
     public PokemonData() {
     }
 
+    public Species getSpecies() {
+        return species;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
     public List<String> getTerminatedNickname() {
         //return pokemon.maker.TextConverter.padTo(pokemon.maker.TextConverter.terminate(pokemon.maker.TextConverter.convert(nickname)), "0x50", 11);
         return null;

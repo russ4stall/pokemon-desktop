@@ -15,9 +15,14 @@ import javafx.scene.image.ImageView;
 import com.russ4stall.pokemon.PokemonData;
 
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
+
+import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 //import static pokemon.maker.PokemonGeneratorApp.pp;
 
@@ -103,8 +108,21 @@ public class PokemonController implements Initializable {
         System.out.println(speciesCmb.getValue());
         System.out.println(data.getBytes().size());
         System.out.println(data.getBytes());
+
         Gson gson = new Gson();
-        System.out.println(gson.toJson(data));
+        String pokeJson = gson.toJson(data);
+        System.out.println(pokeJson);
+
+        //Create File Name
+        String fileName = !isEmpty(data.getNickname()) ? data.getNickname() : data.getSpecies().getName();
+        fileName = fileName + "_" + new Date().getTime() + ".json";
+
+        try(  PrintWriter out = new PrintWriter(fileName) ){
+            out.println( pokeJson );
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
         //clearFields();
     }
 
