@@ -26,7 +26,7 @@ public class MainApp extends Application {
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
 
         log.debug("Showing JFX scene");
-        Scene scene = new Scene(rootNode, 400, 600);
+        Scene scene = new Scene(rootNode, 800, 600);
         scene.getStylesheets().add("/styles/styles.css");
 
         stage.setTitle("Team Rocket");

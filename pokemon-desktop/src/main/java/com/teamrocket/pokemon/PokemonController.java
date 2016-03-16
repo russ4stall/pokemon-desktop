@@ -28,6 +28,7 @@ public class PokemonController implements Initializable {
 
     @FXML private ImageView spriteImg;
     @FXML private TextField nicknameField;
+    @FXML private TextField otNameField;
     @FXML private ComboBox<Species> speciesCmb;
     @FXML private NumberSpinner currentHpField;
     @FXML private NumberTextField levelPcField;
@@ -97,7 +98,7 @@ public class PokemonController implements Initializable {
         data.setSpeed(152);
         data.setSpecial(153);
         data.setNickname(nicknameField.getText());
-        data.setOriginalTrainerName("BOBBO");
+        data.setOriginalTrainerName(otNameField.getText());
 
         System.out.println(speciesCmb.getValue());
         System.out.println(data.getBytes().size());
